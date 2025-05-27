@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Painel de Licenças</title>
+</head>
+<body>
+    <h2>Painel de Chaves</h2>
+    <form method="POST" action="/gerar">
+        Dias de validade: <input type="number" name="dias" value="1" min="1">
+        <button type="submit">Gerar nova chave</button>
+    </form>
+    <hr>
+    <table border="1">
+        <tr><th>Chave</th><th>Validade</th><th>Máquina</th><th>Ações</th></tr>
+        {% for chave, info in dados.items() %}
+        <tr>
+            <td>{{ chave }}</td>
+            <td>{{ info.validade }}</td>
+            <td>{{ info.machine }}</td>
+            <td>
+                <a href="/revogar/{{ chave }}">Liberar máquina</a> |
+                <a href="/excluir/{{ chave }}">Excluir</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br><a href="/logout">Sair</a>
+</body>
+</html>
